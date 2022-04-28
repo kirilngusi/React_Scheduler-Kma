@@ -4,7 +4,7 @@ export const slice = createSlice({
     name: "changeToolTip",
     initialState: {
         showToolTip: false,
-        data: {},
+        data: [],
     },
     reducers: {
         changeStatus(state, { payload }) {
@@ -13,10 +13,16 @@ export const slice = createSlice({
 
             state.data = lesson;
         },
+        changeStatusMobile(state, { payload }) {
+            const { lesson, show } = payload;
+            state.showToolTip = show;
+
+            state.data = lesson;
+        },
     },
 });
 
-export const { changeStatus } = slice.actions;
+export const { changeStatus, changeStatusMobile } = slice.actions;
 
 export const subLesson = (state) => state.toolTip.data;
 

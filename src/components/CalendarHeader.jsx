@@ -1,13 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-    selectMonth,
+    MonthPresent,
     MonthNext,
     MonthPre,
 } from "../store/reducers/changeMonth";
 
 const CalendarHeader = () => {
     const dispatch = useDispatch();
+
+    const monthSchedule = useSelector((state) => state.changeMonth.month);
+    const yearSchedule = useSelector((state) => state.changeMonth.year);
 
     const onChangeMonthPre = () => {
         dispatch(MonthPre());
@@ -19,6 +22,7 @@ const CalendarHeader = () => {
 
     return (
         <div>
+            <button onClick={() => dispatch(MonthPresent())}>Today</button>
             <button onClick={() => onChangeMonthPre()}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +51,8 @@ const CalendarHeader = () => {
                     />
                 </svg>
             </button>
+            {/* <span>{yearSchedule + "." + `${monthSchedule + 1}`}</span> */}
+            <span>{`Tháng ${monthSchedule + 1}` + `Năm ${yearSchedule}`}</span>
         </div>
     );
 };

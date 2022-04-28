@@ -5,6 +5,7 @@ export const slice = createSlice({
     name: "change",
     initialState: {
         month: dayjs().month(),
+        year: dayjs().year(),
     },
     reducers: {
         MonthPre(state, action) {
@@ -14,10 +15,15 @@ export const slice = createSlice({
         MonthNext(state, action) {
             state.month += 1;
         },
+
+        MonthPresent(state, action) {
+            state.month = dayjs().month();
+            state.year = dayjs().year();
+        },
     },
 });
 
-export const { MonthNext, MonthPre } = slice.actions;
+export const { MonthNext, MonthPre, MonthPresent } = slice.actions;
 
 export const selectMonth = (state) => state.changeMonth.month;
 

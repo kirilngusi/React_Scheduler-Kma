@@ -3,21 +3,29 @@ import axios from "axios";
 import { apiUrl } from "../../utilities/typeContains";
 import setAuthToken from "../../utilities/setAuthToken";
 
-export const login = createAsyncThunk("user/login", async () => {
+export const login = createAsyncThunk("user/login", async (formLogin) => {
     const headers = {
         "Content-Type": "application/json",
     };
 
-    const formLogin = {
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-    };
-
     const res = await axios.post(`${apiUrl}/login`, formLogin, { headers });
+    // console.log(res);
     return res.data;
 });
 
-export const getShedule = createAsyncThunk("user/getShedule", async () => {
+// export const getShedule = createAsyncThunk("user/getShedule", async () => {
+//     const headers = {
+//         "Content-Type": "application/json",
+//     };
+//     if (localStorage.getItem("token")) {
+//         setAuthToken(localStorage.getItem("token"));
+//     }
+
+//     const res = await axios.get(`${apiUrl}`, { headers });
+//     return res;
+// });
+
+export const authUser = createAsyncThunk("user/AuthUser", async () => {
     const headers = {
         "Content-Type": "application/json",
     };
@@ -35,11 +43,12 @@ export const slice = createSlice({
         logged: false,
         data: {},
         shedule: "",
+        authLoading: false,
+        error: "",
     },
     reducers: {
         setLogin(state, action) {
             state.logged = true;
-            localStorage.setItem("token");
         },
         setLogout(state, action) {
             state.logged = false;
@@ -50,29 +59,44 @@ export const slice = createSlice({
             console.log("Pending");
         },
         [login.fulfilled]: (state, action) => {
-            state.data = action.payload;
+            // state.data = action.payload;
             state.logged = true;
+            state.authLoading = true;
 
             localStorage.setItem("token", action.payload.accessToken);
-        },
-        [login.rejected]: (state, action) => {
-            state.logged = false;
-            localStorage.removeItem(token);
-        },
-        [getShedule.pending]: (state, action) => {
-            console.log("Pending getshedule");
-        },
-        [getShedule.fulfilled]: (state, { payload }) => {
-            state.shedule = payload.data.message.schedule;
-
             localStorage.setItem(
                 "data",
-                JSON.stringify(payload.data.message.schedule)
+                JSON.stringify(action.payload.message.fullInfo.schedule)
             );
         },
         [login.rejected]: (state, action) => {
-            console.log("rejected");
+            state.logged = false;
+            localStorage.removeItem("token");
+            state.error = "Sai Tài Khoản Hoặc Mật Khẩu";
         },
+
+        [authUser.fulfilled]: (state, action) => {
+            state.logged = true;
+            state.authLoading = true;
+        },
+        [authUser.rejected]: (state, action) => {
+            state.logged = false;
+            localStorage.removeItem("token");
+            localStorage.removeItem("data");
+            // state.error = action.payload;
+        },
+
+        // [getShedule.pending]: (state, action) => {
+        //     console.log("Pending getshedule");
+        // },
+        // [getShedule.fulfilled]: (state, { payload }) => {
+        //     state.shedule = payload.data.message.schedule;
+
+        //     localStorage.setItem(
+        //         "data",
+        //         JSON.stringify(payload.data.message.schedule)
+        //     );
+        // },
     },
 });
 

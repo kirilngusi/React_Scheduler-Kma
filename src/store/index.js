@@ -12,7 +12,7 @@ export default configureStore({
         getDefaultMiddleware({
             serializableCheck: {
                 // Ignore these action types
-                ignoredActions: ["user/getShedule/fulfilled"],
+                ignoredActions: ["user/AuthUser/fulfilled"],
                 // Ignore these field paths in all actions
                 // ignoredActionPaths: ["user/getShedule"],
                 // // Ignore these paths in the state
