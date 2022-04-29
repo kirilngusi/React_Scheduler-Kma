@@ -1,7 +1,4 @@
-export const apiUrl =
-    process.env.NODE_ENV !== "production"
-        ? "http://localhost:5000"
-        : "https://api-crawl-tkb.vercel.app/";
+export const apiUrl = "https://api-crawl-tkb.vercel.app/";
 
 export const getData = async (url, token) => {
     const res = await fetch(`${apiUrl}/${url}`, {
