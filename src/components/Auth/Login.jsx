@@ -55,7 +55,7 @@ const Login = () => {
             <div className="w-full flex justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                 <div className="max-w-md w-full space-y-8 shadow-md  rounded-lg  ">
                     <h1 className="text-center justify-center flex text-3xl  text-gray-500">
-                        KMA SCHEDULE
+                        KMA SCHEDULER
                     </h1>
                     <form
                         onSubmit={handleLogin}
