@@ -43,9 +43,6 @@ const DayCalendar = ({ day, rowIdx }) => {
                         JSON.parse(schedule).map((value, index) =>
                             value.date.split(" ").splice(0, 4).toString() ==
                             dayToString.split(" ").splice(0, 4).toString() ? (
-                                // <span className="w-10 h-full" key={index}>
-                                //     .
-                                // </span>
                                 <div className="flex justify-center absolute ">
                                     <span className="  h-2 w-2 rounded-full bg-sky-400 opacity-0"></span>
                                     <span className="rounded-full h-2 w-2 bg-sky-500 "></span>
