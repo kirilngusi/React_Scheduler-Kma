@@ -5,12 +5,12 @@ import { timeLesson } from "../utilities/getTime";
 import dayjs from "dayjs";
 
 const randomColor = [
-    "bg-rose-500",
+    "bg-rose-600",
     "bg-sky-400",
-    "bg-pink-400",
+    "bg-pink-500",
     "bg-purple-400",
     "bg-violet-600",
-    "bg-indigo-400",
+    "bg-indigo-500",
     "bg-blue-400",
     "bg-teal-500",
     "bg-lime-500",
@@ -18,9 +18,7 @@ const randomColor = [
     "bg-orange-500",
     "bg-orange-600",
     "bg-red-400",
-    "bg-red-50",
     "bg-zinc-500",
-    "bg-zinc-400",
 ];
 
 const makeColor = Math.floor(Math.random() * randomColor.length);

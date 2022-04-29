@@ -29,8 +29,6 @@ const DayCalendar = ({ day, rowIdx }) => {
         }
     };
 
-    let countLessons = [];
-
     return (
         <>
             <div

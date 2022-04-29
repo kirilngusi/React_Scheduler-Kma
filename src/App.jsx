@@ -5,12 +5,19 @@ import Login from "./components/Auth/Login";
 import Home from "./components/Home/Home";
 
 import PrivateRoute from "./components/Protect/PrivateRoute";
-
+import AuthLogin from "./components/Protect/AuthLogin";
 const App = () => {
     return (
         <React.Fragment>
             <Routes>
-                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/login"
+                    element={
+                        <AuthLogin>
+                            <Login />
+                        </AuthLogin>
+                    }
+                />
                 <Route
                     path="/"
                     element={

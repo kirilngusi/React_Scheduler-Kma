@@ -12,8 +12,8 @@ const Login = () => {
     let error = useSelector((state) => state.user.error);
 
     const [formLogin, setFromLogin] = useState({
-        username: "AT170302",
-        password: "chutichtuan1900",
+        username: "",
+        password: "",
     });
     const { username, password } = formLogin;
     let navigate = useNavigate();
@@ -26,7 +26,7 @@ const Login = () => {
         if (logged) {
             navigate("/");
         }
-    });
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();

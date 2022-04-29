@@ -10,14 +10,15 @@ import { timeLesson } from "../../utilities/getTime";
 const ShowLesson = React.memo(() => {
     const lessons = useSelector(subLesson);
 
-    console.log(lessons);
-
     if (lessons.length == 0) {
         return "";
     }
 
     return lessons.map((lesson, index) => (
-        <div className="shadow-lg rounded-lg m-2 mb-5" key={index}>
+        <div
+            className="shadow-lg rounded-lg p-2 mb-5 bg-darkslategray w-full"
+            key={index}
+        >
             <div className="mb-2">{`Môn Học:  ${lesson.lessons[0].subject_name}`}</div>
             <div className="mb-2">{`Thời Gian: Từ ${
                 timeLesson(lesson.lessons[0].lesson).start

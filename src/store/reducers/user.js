@@ -41,7 +41,7 @@ export const slice = createSlice({
     name: "user",
     initialState: {
         logged: false,
-        data: {},
+        userInfo: "",
         shedule: "",
         authLoading: false,
         error: "",
@@ -52,6 +52,8 @@ export const slice = createSlice({
         },
         setLogout(state, action) {
             state.logged = false;
+            localStorage.removeItem("token");
+            localStorage.removeItem("data");
         },
     },
     extraReducers: {
@@ -63,6 +65,8 @@ export const slice = createSlice({
             state.logged = true;
             state.authLoading = true;
 
+            state.userInfo = action.payload.message.student_id;
+
             localStorage.setItem("token", action.payload.accessToken);
             localStorage.setItem(
                 "data",
@@ -72,12 +76,14 @@ export const slice = createSlice({
         [login.rejected]: (state, action) => {
             state.logged = false;
             localStorage.removeItem("token");
+            localStorage.removeItem("data");
             state.error = "Sai Tài Khoản Hoặc Mật Khẩu";
         },
 
         [authUser.fulfilled]: (state, action) => {
             state.logged = true;
             state.authLoading = true;
+            state.userInfo = action.payload.data.student_id;
         },
         [authUser.rejected]: (state, action) => {
             state.logged = false;
@@ -100,7 +106,7 @@ export const slice = createSlice({
     },
 });
 
-export const { setLogin } = slice.actions;
+export const { setLogin, setLogout } = slice.actions;
 
 // export const selecteShedule = (state) => state.user.shedule;
 

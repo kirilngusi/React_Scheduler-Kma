@@ -12,6 +12,8 @@ import {
     MonthPre,
 } from "../../store/reducers/changeMonth";
 
+import CalendarHeader from "../CalendarHeader";
+
 const SmallCalendar = ({ month }) => {
     const showEventModal = useSelector((state) => state.toolTip.showToolTip);
 
@@ -20,8 +22,9 @@ const SmallCalendar = ({ month }) => {
     const yearSchedule = useSelector((state) => state.changeMonth.year);
 
     return (
-        <div className="text-sm text-mobile-sm">
-            <div className=" h-screen bg-darkslategray pt-5 text-steelblue font-bold ">
+        <div className="text-sm text-mobile-sm h-screen">
+            <div className=" h-full bg-darkslategray pt-1 text-steelblue font-bold p-1">
+                <CalendarHeader device={"mobile"} />
                 <header className="flex justify-between">
                     <button onClick={() => dispatch(MonthPre())}>
                         <span className="material-icons-outlined cursor-pointer mr-2">
