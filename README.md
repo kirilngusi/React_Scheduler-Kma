@@ -17,5 +17,5 @@ Or: https://kirildev.netlify.app
 
 ## Preview
 
-![Preview 1](https://res.cloudinary.com/dmqek41c2/image/upload/v1651489936/kma1_cymy3u.png) ![Preview 2](https://res.cloudinary.com/dmqek41c2/image/upload/v1651490505/kma2_xyggoc.png) [Preview 3](https://res.cloudinary.com/dmqek41c2/image/upload/v1651490126/kma3_tluqo3.png)
+![Preview 1](https://res.cloudinary.com/dmqek41c2/image/upload/v1651489936/kma1_cymy3u.png) ![Preview 2](https://res.cloudinary.com/dmqek41c2/image/upload/v1651490505/kma2_xyggoc.png) ![Preview 3](https://res.cloudinary.com/dmqek41c2/image/upload/v1651490126/kma3_tluqo3.png)
 
