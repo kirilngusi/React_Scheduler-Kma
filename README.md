@@ -9,7 +9,7 @@ Or: https://kirildev.netlify.app
 
 ## Getting Started
 
-1. Git clone FE: https://github.com/kirilngusi/React_Schedule-Kma.git 
+1. Git clone FE: https://github.com/kirilngusi/React_Scheduler-Kma.git
 2. Git clone BE: https://github.com/kirilngusi/Api-Crawl-Tkb.git
 3. Set file .env including: MONGO_URL (connect your mongodb) , ACCESS_TOKEN_JWT (key secret)
 4. Run on FE : yarn install and yarn dev
