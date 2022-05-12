@@ -47,16 +47,16 @@ const CalendarHeader = ({ device }) => {
     }
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center bg">
             <button
-                className="bg-sky-500/100 hover:bg-sky-500/70 text-white font-bold py-2 px-4 rounded-full ml-5"
+                className="text-black hover:bg-bgBtn  py-2 px-4 rounded-lg ml-5 border"
                 onClick={() => dispatch(MonthPresent())}
             >
                 Today
             </button>
             <button
                 onClick={() => onChangeMonthPre()}
-                className="  flex items-center "
+                className="  flex items-center ml-5"
             >
                 <span className="material-icons-outlined cursor-pointer mr-2">
                     chevron_left
@@ -82,7 +82,7 @@ const CalendarHeader = ({ device }) => {
                         <span className="mr-2 py-2">{`Hi ${student_Id} !`}</span>
                         <button
                             onClick={() => logOutBtn()}
-                            className="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full "
+                            className=" hover:bg-bgBtn text-black py-2 px-4 rounded-lg border ml-5"
                         >
                             Logout
                         </button>

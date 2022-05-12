@@ -12,6 +12,8 @@ module.exports = {
                 darkslategray: "rgb(30,41,59)",
                 textdark: "#b9bbbe",
                 steelblue: "#5386a5",
+                textblack: "#3c4043",
+                bgBtn: "#dadce0",
             },
         },
     },

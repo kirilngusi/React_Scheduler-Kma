@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { login } from "../../store/reducers/user";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { authUser } from "../../store/reducers/user";
-import Toats from "../layout/Toats";
+
+import { login, authUser, setError } from "../../store/reducers/user";
+
+import Toast from "../layout/Toast";
+import Loading from "../layout/Loading";
+
 const Login = () => {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.user.logged);
-    // const [alert, setAlert] = useState(null);
-    let error = useSelector((state) => state.user.error);
+    const auth = useSelector((state) => state.user.authLoading);
+
+    var error = useSelector((state) => state.user.error);
 
     const [formLogin, setFromLogin] = useState({
         username: "",
@@ -43,15 +46,26 @@ const Login = () => {
         }
     };
 
-    // console.log(alert);
-
     const onChangeUser = (e) => {
         setFromLogin({ ...formLogin, [e.target.name]: e.target.value });
     };
 
+    if (error) {
+        setTimeout(() => {
+            dispatch(setError(""));
+        }, 4000);
+    }
+
     return (
         <div className="h-screen">
-            {error ? <Toats error={error} /> : ""}
+            {!auth && <Loading />}
+
+            {error && (
+                <Toast
+                    error={error}
+                    hiddenToast={() => dispatch(setError(""))}
+                />
+            )}
             <div className="w-full flex justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                 <div className="max-w-md w-full space-y-8 shadow-md  rounded-lg  ">
                     <h1 className="text-center justify-center flex text-3xl  text-gray-500">
@@ -60,6 +74,7 @@ const Login = () => {
                     <form
                         onSubmit={handleLogin}
                         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                        onKeyDown={(e) => e.key === "Enter"}
                     >
                         <div className="mb-4">
                             <label
@@ -94,9 +109,19 @@ const Login = () => {
                             />
                         </div>
                         <div className="flex justify-center items-center">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                Login
-                            </button>
+                            {!auth ? (
+                                <button
+                                    type="button"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    disabled
+                                >
+                                    Loading...
+                                </button>
+                            ) : (
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                    Login
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>

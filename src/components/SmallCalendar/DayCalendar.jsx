@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { changeStatusMobile } from "../../store/reducers/changeToolTip";
 
 const DayCalendar = ({ day, rowIdx }) => {
+    const [activecolor, setActiveColor] = useState(false);
     const dispatch = useDispatch();
     const schedule = localStorage.getItem("data");
 
@@ -29,6 +30,16 @@ const DayCalendar = ({ day, rowIdx }) => {
         }
     };
 
+    const handleClick = (event) => {
+        setActiveColor(true);
+    };
+
+    if (activecolor) {
+        setTimeout(() => {
+            setActiveColor(false);
+        }, 500);
+    }
+
     return (
         <>
             <div
@@ -36,7 +47,12 @@ const DayCalendar = ({ day, rowIdx }) => {
                 onClick={() => showEventModal(day.$d.toString())}
                 key={rowIdx}
             >
-                <div className="">{day.format("DD")}</div>
+                <div
+                    className={activecolor ? "text-black" : ""}
+                    onClick={() => handleClick()}
+                >
+                    {day.format("DD")}
+                </div>
 
                 <div className=" ">
                     {schedule ? (
@@ -44,7 +60,7 @@ const DayCalendar = ({ day, rowIdx }) => {
                             value.date.split(" ").splice(0, 4).toString() ==
                             dayToString.split(" ").splice(0, 4).toString() ? (
                                 <div className="flex justify-center absolute ">
-                                    <span className="  h-2 w-2 rounded-full bg-sky-400 opacity-0"></span>
+                                    <span className="h-2 w-2 rounded-full bg-sky-400 opacity-0"></span>
                                     <span className="rounded-full h-2 w-2 bg-sky-500 "></span>
                                 </div>
                             ) : (

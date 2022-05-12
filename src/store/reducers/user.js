@@ -43,7 +43,7 @@ export const slice = createSlice({
         logged: false,
         userInfo: "",
         shedule: "",
-        authLoading: false,
+        authLoading: true,
         error: "",
     },
     reducers: {
@@ -55,10 +55,14 @@ export const slice = createSlice({
             localStorage.removeItem("token");
             localStorage.removeItem("data");
         },
+        setError(state, action) {
+            state.error = action.payload;
+        },
     },
     extraReducers: {
         [login.pending]: (state, action) => {
             console.log("Pending");
+            state.authLoading = false;
         },
         [login.fulfilled]: (state, action) => {
             // state.data = action.payload;
@@ -74,12 +78,17 @@ export const slice = createSlice({
             );
         },
         [login.rejected]: (state, action) => {
+            state.authLoading = true;
             state.logged = false;
             localStorage.removeItem("token");
             localStorage.removeItem("data");
             state.error = "Sai Tài Khoản Hoặc Mật Khẩu";
         },
 
+        [authUser.pending]: (state, action) => {
+            console.log("Pending");
+            state.authLoading = false;
+        },
         [authUser.fulfilled]: (state, action) => {
             state.logged = true;
             state.authLoading = true;
@@ -87,6 +96,7 @@ export const slice = createSlice({
         },
         [authUser.rejected]: (state, action) => {
             state.logged = false;
+            state.authLoading = true;
             localStorage.removeItem("token");
             localStorage.removeItem("data");
             // state.error = action.payload;
@@ -106,7 +116,7 @@ export const slice = createSlice({
     },
 });
 
-export const { setLogin, setLogout } = slice.actions;
+export const { setLogin, setLogout, setError } = slice.actions;
 
 // export const selecteShedule = (state) => state.user.shedule;
 
