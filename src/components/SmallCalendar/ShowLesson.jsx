@@ -17,14 +17,14 @@ const ShowLesson = React.memo(() => {
     return lessons.map((lesson, index) => (
         <div className="bg-darkslategray w-full h-full">
             <div
-                className="shadow-xl rounded-lg mb-5 ml-1 border-0	"
+                className="shadow-xl rounded-lg mb-4 p-1 border-0 "
                 key={index}
             >
-                <div className="mb-2">{`Môn Học:  ${lesson.lessons[0].subject_name}`}</div>
-                <div className="mb-2">{`Thời Gian: Từ ${
+                <div className="mb-1">{`Môn Học:  ${lesson.lessons[0].subject_name}`}</div>
+                <div className="mb-1">{`Thời Gian: Từ ${
                     timeLesson(lesson.lessons[0].lesson).start
                 } Đến: ${timeLesson(lesson.lessons[0].lesson).end}`}</div>
-                <div className="mb-2">{`Địa Điểm: ${lesson.lessons[0].address}`}</div>
+                <div className="mb-1">{`Địa Điểm: ${lesson.lessons[0].address}`}</div>
             </div>
         </div>
     ));

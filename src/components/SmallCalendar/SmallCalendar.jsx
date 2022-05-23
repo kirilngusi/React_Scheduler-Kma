@@ -23,7 +23,7 @@ const SmallCalendar = ({ month }) => {
 
     return (
         <div className="text-sm text-mobile-sm h-screen">
-            <div className=" h-full bg-darkslategray pt-1 text-steelblue font-bold p-1">
+            <div className=" h-full bg-darkslategray pt-1 text-steelblue font-bold p-1 overflow-y-auto ">
                 <CalendarHeader device={"mobile"} />
                 <header className="flex justify-between">
                     <button onClick={() => dispatch(MonthPre())}>
