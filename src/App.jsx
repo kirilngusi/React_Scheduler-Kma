@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Home from "./components/Home/Home";
 
 import PrivateRoute from "./components/Protect/PrivateRoute";
 import AuthLogin from "./components/Protect/AuthLogin";
+
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
 const App = () => {
+    const location = useLocation();
+    useEffect(() => {
+        // Runs On Location, I.e. Route, Change
+        NProgress.start();
+        NProgress.done();
+    }, [location]);
+
     return (
         <React.Fragment>
             <Routes>
