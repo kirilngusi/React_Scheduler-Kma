@@ -8,17 +8,20 @@ import Toast from "../layout/Toast";
 import Loading from "../layout/Loading";
 
 const Login = () => {
+    const [username, setUserName] = useState("");
+    const [password, setPassWord] = useState("");
+
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.user.logged);
     const auth = useSelector((state) => state.user.authLoading);
 
     var error = useSelector((state) => state.user.error);
 
-    const [formLogin, setFromLogin] = useState({
-        username: "",
-        password: "",
-    });
-    const { username, password } = formLogin;
+    // const [formLogin, setFromLogin] = useState({
+    //     username: "",
+    //     password: "",
+    // });
+    // const { username, password } = formLogin;
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -34,6 +37,8 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        const formLogin = { username, password };
+        console.log(formLogin);
         try {
             await dispatch(login(formLogin));
 
@@ -46,9 +51,9 @@ const Login = () => {
         }
     };
 
-    const onChangeUser = (e) => {
-        setFromLogin({ ...formLogin, [e.target.name]: e.target.value });
-    };
+    // const onChangeUser = (e) => {
+    //     setFromLogin({ ...formLogin, [e.target.name]: e.target.value });
+    // };
 
     if (error) {
         setTimeout(() => {
@@ -87,8 +92,10 @@ const Login = () => {
                                 type="text"
                                 name="username"
                                 placeholder="Username"
-                                value={username}
-                                onChange={onChangeUser}
+                                // value={username}
+                                onChange={(e) =>
+                                    setUserName(e.target.value.toUpperCase())
+                                }
                                 className="bg-gray-200 focus:bg-transparent focus:border-blue-700 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                             />
                         </div>
@@ -104,8 +111,8 @@ const Login = () => {
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                value={password}
-                                onChange={onChangeUser}
+                                // value={password}
+                                onChange={(e) => setPassWord(e.target.value)}
                             />
                         </div>
                         <div className="flex justify-center items-center">
