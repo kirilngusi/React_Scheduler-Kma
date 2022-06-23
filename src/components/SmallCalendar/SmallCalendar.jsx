@@ -43,9 +43,9 @@ const SmallCalendar = ({ month }) => {
                     </button>
                 </header>
 
-                <div className="grid grid-cols-7 grid-row-6 mt-5 ">
+                <div className="grid grid-cols-7 grid-row-6 mt-7">
                     {month[0].map((day, i) => (
-                        <div className="text-center" key={i}>
+                        <div className="text-center w-12 mb-3" key={i}>
                             {dayjs(new Date(day.$d)).format("ddd")}
                         </div>
                     ))}
