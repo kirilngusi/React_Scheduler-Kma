@@ -17,11 +17,6 @@ const Login = () => {
 
     var error = useSelector((state) => state.user.error);
 
-    // const [formLogin, setFromLogin] = useState({
-    //     username: "",
-    //     password: "",
-    // });
-    // const { username, password } = formLogin;
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -37,8 +32,8 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const formLogin = { username, password };
-        console.log(formLogin);
+        var formLogin = { username, password };
+
         try {
             await dispatch(login(formLogin));
 
@@ -50,10 +45,6 @@ const Login = () => {
             localStorage.removeItem("token");
         }
     };
-
-    // const onChangeUser = (e) => {
-    //     setFromLogin({ ...formLogin, [e.target.name]: e.target.value });
-    // };
 
     if (error) {
         setTimeout(() => {
